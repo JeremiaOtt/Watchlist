@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Watchlist.Emum
 {
-    public enum ApplicationPage
+    public enum Page
     {
         EntryList,
         EntryView

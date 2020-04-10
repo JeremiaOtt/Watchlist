@@ -11,18 +11,24 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
-        <Button Content="Back" Grid.Column="0"/>
+        <StackPanel Grid.Column="0">
+            <ListView Name="LvSpinOffs" ItemsSource="{Binding Series}">
+                <ListView.View>
 
-        <StackPanel Margin="10 0 0 0" Grid.Column="1">
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Watched" Width="120" DisplayMemberBinding="{Binding Watched}"/>
+                    </GridView>
 
-            <TextBlock Text="Hello World"/>
-            <TextBlock Text="new world"/>
-
+                </ListView.View>
+            </ListView>
         </StackPanel>
+
+        <!--<Button x:Name="Add_Entry" Content="Add" Grid.Column="1" Click="Add_Entry_Click"/>-->
     </Grid>
 
 </Page>

@@ -8,13 +8,13 @@ namespace Watchlist
 {
     internal class Manager
     {
-        public ApplicationPage CurrentPage { get; set; }
+        public Page CurrentPage { get; set; }
         public ObservableCollection<Series> Series { get; }
         private readonly SaveData saveData;
 
         public Manager(XmlFile xmlFile)
         {
-            CurrentPage = ApplicationPage.EntryList;
+            CurrentPage = Page.EntryList;
             Series = new ObservableCollection<Series>();
             saveData = new SaveData(xmlFile);
             Load();
@@ -33,12 +33,12 @@ namespace Watchlist
             Series.Add(new Series(new Counter(), name, watched));
             //Save();
 
-            CurrentPage = ApplicationPage.EntryView;
+            CurrentPage = Page.EntryView;
         }
 
         internal void ViewEntryList()
         {
-            CurrentPage = ApplicationPage.EntryList;
+            CurrentPage = Page.EntryList;
         }
 
         internal void Save()
