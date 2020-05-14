@@ -12,8 +12,8 @@
         <con:PageValueConverter x:Key="PageCon"/>
     </Window.Resources>
 
-    <StackPanel>
+    <Border Margin="0 2">
         <Frame Content="{Binding CurrentPage, Converter={StaticResource PageCon}}"/>
-    </StackPanel>
+    </Border>
 
 </Window>
