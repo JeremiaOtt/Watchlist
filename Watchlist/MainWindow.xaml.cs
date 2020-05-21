@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,19 +23,9 @@ namespace Watchlist
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Manager manager;
-
         public MainWindow()
         {
             InitializeComponent();
-
-            manager = new Manager(new XmlFile());
-            DataContext = manager;
-        }
-
-        private void Add_Entry_Click(object sender, RoutedEventArgs e)
-        {
-            manager.AddEntry();
         }
     }
 }

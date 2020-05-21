@@ -6,7 +6,7 @@ using Watchlist.Emum;
 
 namespace Watchlist
 {
-    internal class Manager
+    public class Manager
     {
         public Page CurrentPage { get; set; }
         public ObservableCollection<Series> Series { get; }
