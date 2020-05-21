@@ -4,8 +4,6 @@
              xmlns:local="clr-namespace:Watchlist"
              xmlns:autofac="clr-namespace:Watchlist.Autofac"
              StartupUri="MainWindow.xaml">
-            <!--Old Startup-->
-            <!--Startup="App_Startup">-->
     <Application.Resources>
         <autofac:Factory x:Key="Factory"/>
     </Application.Resources>
