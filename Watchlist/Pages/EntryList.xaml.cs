@@ -22,5 +22,10 @@ namespace Watchlist.Pages
         {
             InitializeComponent();
         }
+
+        private void Add_Entry_Click(object sender, RoutedEventArgs e)
+        {
+            //_manager.AddEntry();
+        }
     }
 }

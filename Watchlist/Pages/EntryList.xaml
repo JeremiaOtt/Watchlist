@@ -28,7 +28,7 @@
             </ListView>
         </StackPanel>
 
-        <!--<Button x:Name="Add_Entry" Content="Add" Grid.Column="1" Click="Add_Entry_Click"/>-->
+        <Button x:Name="Add_Entry" Content="Add" Grid.Column="1" Click="Add_Entry_Click"/>
     </Grid>
 
 </Page>
