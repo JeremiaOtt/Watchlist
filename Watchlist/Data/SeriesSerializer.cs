@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Watchlist
 {
-    internal class SaveData
+    internal class SeriesSerializer
     {
+        // ToDo: The path should come from the outsite
         //private string path = "C:\\Users\\Seischen\\Documents\\Projekte\\Watchlist";
         private string path = "C:\\Users\\Seischen\\Documents\\watchlistData.xml";
-        private readonly XmlFile xmlFile;
 
-        public SaveData(XmlFile xmlFile)
+        private readonly XmlSerializer xmlFile;
+
+        public SeriesSerializer(XmlSerializer xmlFile)
         {
             this.xmlFile = xmlFile;
         }

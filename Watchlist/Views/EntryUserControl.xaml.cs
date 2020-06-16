@@ -10,17 +10,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Watchlist.ViewModels;
 
-namespace Watchlist.Pages
+namespace Watchlist.Views
 {
     /// <summary>
-    /// Interaction logic for EntryView.xaml
+    /// Interaction logic for EntryUserControl.xaml
     /// </summary>
-    public partial class EntryView : Page
+    public partial class EntryUserControl : UserControl
     {
-        public EntryView()
+        //private EntryViewModel _viewModel;
+
+        public EntryUserControl()   //EntryViewModel viewModel)
         {
             InitializeComponent();
+
+            //_viewModel = viewModel;
+            //DataContext = _viewModel;
         }
     }
 }

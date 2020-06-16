@@ -4,17 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Watchlist"
-        xmlns:con="clr-namespace:Watchlist.Converter"
+        xmlns:viewmodels="clr-namespace:Watchlist.ViewModels"
+        xmlns:views="clr-namespace:Watchlist.Views"
         mc:Ignorable="d"
-        DataContext="{Binding Path=Manager, Source={StaticResource Factory}}"
+        DataContext="{Binding Path=MainViewModel, Source={StaticResource Factory}}"
         Title="Watchlist" Height="450" Width="800">
 
     <Window.Resources>
-        <con:PageValueConverter x:Key="PageCon"/>
+        <!--<DataTemplate x:Name="EntryListViewTemplate" DataType="{x:Type viewmodels:EntryListViewModel}">-->
+        <DataTemplate DataType="{x:Type viewmodels:EntryListViewModel}">
+            <views:EntryListUserControl/>
+            <!--<views:EntryListUserControl DataContext="{Binding CurrentView}"/>-->
+            <!--<views:EntryListUserControl DataContext="{Binding Path=CurrentView, Source={StaticResource Factory}}"/>-->
+            <!--DataContext="{Binding CurrentView}" Source="{StaticResource Factory}"-->
+        </DataTemplate>
     </Window.Resources>
 
     <Border Margin="0 2">
-        <Frame Content="{Binding CurrentPage, Converter={StaticResource PageCon}}"/>
+        <ContentControl Content="{Binding CurrentView}" />
     </Border>
 
 </Window>

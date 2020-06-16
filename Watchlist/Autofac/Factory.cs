@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Watchlist.ViewModels;
+using Watchlist.ViewModels.Interfaces;
 
 namespace Watchlist.Autofac
 {
@@ -13,9 +15,14 @@ namespace Watchlist.Autofac
             container = containerBuilder.Build();
         }
 
-        public Manager Manager
+        public MainViewModel MainViewModel
         {
-            get { return container.Resolve<Manager>(); }
+            get { return container.Resolve<MainViewModel>(); }
         }
+
+        //public IViewModel CurrentView
+        //{
+        //    get { return container.Resolve<IViewModel>(); }
+        //}
     }
 }

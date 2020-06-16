@@ -11,4 +11,9 @@
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Converter\" />
+    <Folder Include="Emum\" />
+  </ItemGroup>
+
 </Project>

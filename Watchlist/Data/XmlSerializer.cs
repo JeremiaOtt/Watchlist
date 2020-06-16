@@ -1,13 +1,14 @@
 ﻿using System.IO;
-using System.Xml.Serialization;
 
 namespace Watchlist
 {
-    public class XmlFile
+    public class XmlSerializer
     {
         public void Save(string path, object obj)
         {
-            XmlSerializer serializer = new XmlSerializer(obj.GetType());
+            System.Xml.Serialization.XmlSerializer serializer =
+                new System.Xml.Serialization.XmlSerializer(obj.GetType());
+
             StringWriter writer = new StringWriter();
             serializer.Serialize(writer, obj);
 
@@ -16,7 +17,8 @@ namespace Watchlist
 
         public T Read<T>(string path) where T : new()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            System.Xml.Serialization.XmlSerializer serializer =
+                new System.Xml.Serialization.XmlSerializer(typeof(T));
 
             if (!File.Exists(path))
                 return new T();

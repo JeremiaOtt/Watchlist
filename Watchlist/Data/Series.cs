@@ -10,7 +10,7 @@ namespace Watchlist
         public string Name { get; set; }
         public bool Watched { get; set; }
 
-        // For XmlFile class
+        // Needed for Xmlseriallizer class
         public Series()
         {
 
