@@ -11,12 +11,12 @@ namespace Watchlist.Data
 
         //public MainViewModel MainView { get; }
 
-        public Manager(XmlSerializer xmlFile)
-        {
-            //_serializer = new SeriesSerializer(xmlFile); // Inject Serializer direct
-            //_counter = new Counter(10); // ToDo: Save counter current Id too
-            //MainView = new MainViewModel(Load(), ViewNewEntry);
-        }
+        //public Manager(XmlSerializer xmlFile)
+        //{
+        //    //_serializer = new SeriesSerializer(xmlFile); // Inject Serializer direct
+        //    //_counter = new Counter(10); // ToDo: Save counter current Id too
+        //    //MainView = new MainViewModel(Load(), ViewNewEntry);
+        //}
 
         // Save and Load as an extern methode? So I can use it in other ViewModels as well.
         // ICommand? https://www.youtube.com/watch?v=8WfD2cFRymM&list=PLKShHgmYjjFwmuUZ46GxeSTA2zKZF-8nv&index=4

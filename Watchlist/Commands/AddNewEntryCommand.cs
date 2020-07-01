@@ -25,7 +25,7 @@ namespace Watchlist.Commands
             return true;
         }
 
-        public void Execute(object parameter)
+        public void Execute(object parameter)   // ToDo: Prameter as enum
         {
             _viewModel.CurrentViewModel = new EntryViewModel(new Series(_counter, "Enter new name"));
         }
