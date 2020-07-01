@@ -27,6 +27,24 @@ namespace Watchlist.Views
 
             //_viewModel = viewModel;
             //DataContext = _viewModel;
+
+            //DataContextChanged += GetDataContext;
         }
+
+        // This seems more like a hack
+        //private void GetDataContext(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if (_viewModel != null) { return; } // Log if true
+
+        //    if (DataContext is EntryViewModel viewModel)
+        //    {
+        //        _viewModel = viewModel;
+        //    }
+        //}
+
+        //private void Ok_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //_viewModel.Save();
+        //}
     }
 }

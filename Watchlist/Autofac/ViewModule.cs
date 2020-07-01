@@ -1,9 +1,6 @@
 ﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Watchlist.Data;
 using Watchlist.ViewModels;
-using Watchlist.ViewModels.Interfaces;
 
 namespace Watchlist.Autofac
 {
@@ -12,18 +9,23 @@ namespace Watchlist.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<XmlSerializer>();
-            //builder.RegisterType<EntryListViewModel>();
-            //builder.RegisterType<EntryViewModel>();
+            builder.RegisterType<SeriesSerializer>(); // Why does this work? Because I registered "XmlSerializer"?
+
+            builder.Register<Counter>(Icc =>
+            {
+                return new Counter(10); // ToDo: Save counter current Id too
+            }).SingleInstance();
+
+            //builder.Register<Manager>(Icc =>                        // Not need do everything you need in it's
+            //{                                                       // own class and inject into MainViewModel
+            //    return new Manager(Icc.Resolve<XmlSerializer>());   // into the Class that needs it.
+            //}).SingleInstance();                                    // With that I should get rid of SingleInstance
 
             builder.Register<MainViewModel>(Icc =>
             {
-                return new MainViewModel(Icc.Resolve<XmlSerializer>());
-            }).SingleInstance();
-
-            //builder.Register<IViewModel>(Icc =>
-            //{
-            //    return Icc.Resolve<MainViewModel>().CurrentView;
-            //});
+                return new MainViewModel(Icc.Resolve<SeriesSerializer>(),
+                                         Icc.Resolve<Counter>());
+            });
         }
     }
 }

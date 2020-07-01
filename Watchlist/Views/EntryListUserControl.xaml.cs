@@ -19,7 +19,7 @@ namespace Watchlist.Views
     /// </summary>
     public partial class EntryListUserControl : UserControl
     {
-        private EntryListViewModel _viewModel;
+        //private EntryListViewModel _viewModel;
 
         public EntryListUserControl()   //EntryListViewModel viewModel)
         {
@@ -27,22 +27,25 @@ namespace Watchlist.Views
 
             //_viewModel = viewModel;
             //DataContext = viewModel;
-            DataContextChanged += DataContextTest;
+
+            //DataContextChanged += GetDataContext;
         }
 
-        private void DataContextTest(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (_viewModel != null) { return; }
+        // This seems more like a hack
+        //private void GetDataContext(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if (_viewModel != null) { return; } // ToDo:- Log if true
 
-            if (DataContext is EntryListViewModel viewModel)
-            {
-                _viewModel = viewModel;
-            }
-        }
+        //    if (DataContext is EntryListViewModel viewModel)
+        //    {
+        //        _viewModel = viewModel;
+        //    }
+        //}
 
-        private void Add_Entry_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.AddEntry();
-        }
+        // Not needed any more
+        //private void Add_Entry_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _viewModel.AddEntry();
+        //}
     }
 }

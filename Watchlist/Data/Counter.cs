@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Watchlist
+﻿namespace Watchlist
 {
     public class Counter
     {
-        private int id;
+        private int _id;
 
-        public int Id => id++;
+        public int Id => _id++;
 
-        public Counter()
+        public Counter(int id)
         {
-            id = 0;
+            _id = id;
         }
     }
 }

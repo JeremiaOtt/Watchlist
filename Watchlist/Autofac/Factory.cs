@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Watchlist.ViewModels;
-using Watchlist.ViewModels.Interfaces;
 
 namespace Watchlist.Autofac
 {
@@ -19,10 +18,5 @@ namespace Watchlist.Autofac
         {
             get { return container.Resolve<MainViewModel>(); }
         }
-
-        //public IViewModel CurrentView
-        //{
-        //    get { return container.Resolve<IViewModel>(); }
-        //}
     }
 }

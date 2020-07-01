@@ -1,40 +1,26 @@
-﻿using System.Collections.ObjectModel;
-using Watchlist.ViewModels.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using Watchlist.Models;
 
 namespace Watchlist.ViewModels
 {
-    public class MainViewModel : IViewModel
+    public class MainViewModel : BaseViewModel
     {
-        private readonly SeriesSerializer Serializer;
-        private readonly ObservableCollection<Series> Series;   // IEnumerable?
-        public IViewModel CurrentView { get; private set; }
+        private BaseViewModel _currentViewModel;
 
-
-        public MainViewModel(XmlSerializer xmlFile)
+        public BaseViewModel CurrentViewModel
         {
-            Series = new ObservableCollection<Series>();
-            Serializer = new SeriesSerializer(xmlFile);
-            Load();
-            CurrentView = new EntryListViewModel(Series);
-
-            // Testing
-            //var name = "Log Horizon";
-            //var watched = false;
-            //Series.Add(new Series(new Counter(), name, watched));
+            get { return _currentViewModel; }
+            set
+            {
+                _currentViewModel = value;
+                OnPropertyChanged(nameof(CurrentViewModel));
+            }
         }
 
-        // Save and Load as an extern methode? So I can use it in other ViewModels as well.
-        // RelayCommand? https://www.youtube.com/watch?v=8WfD2cFRymM&list=PLKShHgmYjjFwmuUZ46GxeSTA2zKZF-8nv&index=4
-        public void Save()
+        public MainViewModel(SeriesSerializer seriesSerializer, Counter counter)
         {
-            Serializer.Save(Series);
-        }
-
-        public void Load()
-        {
-            //Series.Clear();   // I think I should be carefull with this Command
-            foreach (var dataEntry in Serializer.Load())
-                Series.Add(dataEntry);
+            CurrentViewModel = new EntryListViewModel(seriesSerializer, this, counter);
         }
     }
 }

@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Watchlist.ViewModels.Interfaces;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Watchlist.Extensions;
+using Watchlist.Models;
 
 namespace Watchlist.ViewModels
 {
-    public class EntryViewModel : IViewModel
+    public class EntryViewModel : BaseViewModel
     {
+        public Series SelectedSeries { get; set; }
 
+        public EntryViewModel(Series newSeries)
+        {
+            SelectedSeries = newSeries;
+        }
     }
 }

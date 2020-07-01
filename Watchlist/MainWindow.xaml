@@ -11,17 +11,17 @@
         Title="Watchlist" Height="450" Width="800">
 
     <Window.Resources>
-        <!--<DataTemplate x:Name="EntryListViewTemplate" DataType="{x:Type viewmodels:EntryListViewModel}">-->
         <DataTemplate DataType="{x:Type viewmodels:EntryListViewModel}">
             <views:EntryListUserControl/>
-            <!--<views:EntryListUserControl DataContext="{Binding CurrentView}"/>-->
-            <!--<views:EntryListUserControl DataContext="{Binding Path=CurrentView, Source={StaticResource Factory}}"/>-->
-            <!--DataContext="{Binding CurrentView}" Source="{StaticResource Factory}"-->
+            <!--<views:EntryListUserControl DataContext="{Binding Path=CurrentViewModel, Source={StaticResource Factory}}"/>-->
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EntryViewModel}">
+            <views:EntryUserControl/>
         </DataTemplate>
     </Window.Resources>
 
     <Border Margin="0 2">
-        <ContentControl Content="{Binding CurrentView}" />
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Border>
 
 </Window>

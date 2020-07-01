@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Watchlist
+namespace Watchlist.Models
 {
     public class Series
     {
+        // I think "set" is needed for Xmlseriallizer class
         public int Id { get; set; }
         public string Name { get; set; }
         public bool Watched { get; set; }
 
-        // Needed for Xmlseriallizer class
+        /// <summary>
+        /// Needed for Xmlseriallizer class (Do not use this)
+        /// </summary>
         public Series()
         {
 
