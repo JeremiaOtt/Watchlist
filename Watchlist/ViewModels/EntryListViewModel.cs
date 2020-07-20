@@ -10,27 +10,14 @@ namespace Watchlist.ViewModels
 {
     public class EntryListViewModel : BaseViewModel
     {
-        public ObservableCollection<Series> Series { get; }
+        public ObservableCollection<Series> SeriesCollection { get; }
 
-        public ICommand AddNewEntryCommand { get; set; }
+        public ICommand UpdateViewCommand { get; set; }
 
-        public EntryListViewModel(SeriesSerializer seriesSerializer,
-                                  MainViewModel mainViewModel, Counter counter)
+        public EntryListViewModel(IEnumerable<Series> seriesCollection, UpdateViewCommand updateViewCommand)
         {
-            Series = seriesSerializer.Load().ToOvservableCollection();
-            AddNewEntryCommand = new AddNewEntryCommand(mainViewModel, counter);
-        }        
-
-        // Not needed any more
-        //public void AddEntry()
-        //{
-        //    _viewNewEntry(Series);
-
-        //    //Testing
-        //    //var name = "Naruto";
-        //    //var watched = true;
-        //    //Series.Add(new Series(new Counter(), name, watched));
-        //    //Save();
-        //}
+            SeriesCollection = seriesCollection.ToOvservableCollection();
+            UpdateViewCommand = updateViewCommand;
+        }
     }
 }

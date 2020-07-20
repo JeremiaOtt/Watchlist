@@ -10,7 +10,7 @@ namespace Watchlist.Autofac
         public Factory()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule(new ViewModule());
+            containerBuilder.RegisterModule(new SetupModule());
             container = containerBuilder.Build();
         }
 

@@ -10,16 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Watchlist.ViewModels;
 
 namespace Watchlist.Views
 {
     /// <summary>
-    /// Interaction logic for EntryUserControl.xaml
+    /// Interaction logic for EditFrameUserControl.xaml
     /// </summary>
-    public partial class EntryUserControl : UserControl
+    public partial class EditFrameUserControl : UserControl
     {
-        public EntryUserControl()
+        public EditFrameUserControl()
         {
             InitializeComponent();
         }

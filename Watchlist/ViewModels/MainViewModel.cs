@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Watchlist.Commands;
 using Watchlist.Models;
 
 namespace Watchlist.ViewModels
@@ -18,9 +20,14 @@ namespace Watchlist.ViewModels
             }
         }
 
-        public MainViewModel(SeriesSerializer seriesSerializer, Counter counter)
+        public MainViewModel(StorageSerializer storageSerializer)
         {
-            CurrentViewModel = new EntryListViewModel(seriesSerializer, this, counter);
+            var storage = storageSerializer.Load();
+            var seriesCollection = storage.SeriesCollection ?? new ObservableCollection<Series>();
+            var counter = new Counter(storage.Id ?? 0);
+
+            CurrentViewModel = new EntryListViewModel(seriesCollection,
+                new UpdateViewCommand(this, storageSerializer, counter, seriesCollection));
         }
     }
 }

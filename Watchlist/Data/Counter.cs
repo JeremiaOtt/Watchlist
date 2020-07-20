@@ -10,5 +10,7 @@
         {
             _id = id;
         }
+
+        public int GetIdWithOutIncrease() => _id;
     }
 }
