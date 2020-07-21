@@ -2,10 +2,11 @@
 {
     public enum UpdateView
     {
-        Entry_Ok,
-        Entry_Add,
-        Entry_Cancel,
-        Entry_Delete,
+        Add_Ok,
+        Add_Cancel,
+        Edit_Ok,
+        Edit_Cancel,
+        Edit_Delete,
         EntryList_NewEntry
     }
 }

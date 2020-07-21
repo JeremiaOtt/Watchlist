@@ -4,9 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Watchlist.Views"
+             xmlns:enum="clr-namespace:Watchlist.Enum"
+             xmlns:views="clr-namespace:Watchlist.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <views:EntryUserControl DataContext="{Binding CurrentContent}"/>
+
+        <Button Content="Ok" Grid.Column="1" Grid.Row="0" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Edit_Ok}"/>
+        <Button Content="Cancel" Grid.Column="1" Grid.Row="1" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Edit_Cancel}"/>
+        <Button Content="Delete" Grid.Column="1" Grid.Row="2" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Edit_Delete}"/>
     </Grid>
 </UserControl>

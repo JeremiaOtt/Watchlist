@@ -15,8 +15,8 @@
             <views:EntryListUserControl/>
             <!--<views:EntryListUserControl DataContext="{Binding Path=CurrentViewModel, Source={StaticResource Factory}}"/>-->
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:EntryViewModel}">
-            <views:EntryUserControl/>
+        <DataTemplate DataType="{x:Type viewmodels:AddFrameViewModel}">
+            <views:AddFrameUserControl/>
         </DataTemplate>
     </Window.Resources>
 

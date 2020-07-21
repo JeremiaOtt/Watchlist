@@ -44,23 +44,23 @@ namespace Watchlist.Commands
             {
                 case UpdateView.EntryList_NewEntry:
                     var series = new Series(_counter, "Enter new name");
-                    _mainViewModel.CurrentViewModel = new EntryViewModel(series, this, new ButtonViewModel("Ok", UpdateView.Entry_Add));
+                    _mainViewModel.CurrentViewModel = new AddFrameViewModel(new EntryViewModel(series), this);
                     break;
-                case UpdateView.Entry_Ok:
-                    if (_mainViewModel.CurrentViewModel is EntryViewModel currentViewModel)
+                case UpdateView.Add_Ok:
+                    if (_mainViewModel.CurrentViewModel is AddFrameViewModel currentViewModel)
                     {
                         var newCollection = _seriesCollection.ToOvservableCollection();
-                        newCollection.Add(currentViewModel.SelectedSeries);
+                        newCollection.Add(currentViewModel.CurrentContent.SelectedSeries);
                         _seriesCollection = newCollection;
                         _storageSerializer.Save(new Storage(_counter.GetIdWithOutIncrease(), newCollection));
                         _mainViewModel.CurrentViewModel = new EntryListViewModel(newCollection, this);
                         break;
                     }
-                    throw new InvalidCastException($"UpdateViewCommand.Execute: Entry_Ok ({_mainViewModel.CurrentViewModel.GetType()})");
-                case UpdateView.Entry_Cancel:
+                    throw new InvalidCastException($"UpdateViewCommand.Execute: Add_Ok ({_mainViewModel.CurrentViewModel.GetType()})");
+                case UpdateView.Add_Cancel:
                     _mainViewModel.CurrentViewModel = new EntryListViewModel(_seriesCollection, this);
                     break;
-                case UpdateView.Entry_Delete:
+                //case UpdateView.Edit_Delete:
                     //if (_mainViewModel.CurrentViewModel is EntryViewModel currentViewModel)
                     //{
                     //    var newCollection = _seriesCollection.ToOvservableCollection();
@@ -70,7 +70,7 @@ namespace Watchlist.Commands
                     //    _mainViewModel.CurrentViewModel = new EntryListViewModel(newCollection, this);
                     //    break;
                     //}
-                    throw new InvalidCastException($"UpdateViewCommand.Execute: Entry_Delete ({_mainViewModel.CurrentViewModel.GetType()})");
+                    //throw new InvalidCastException($"UpdateViewCommand.Execute: Edit_Delete ({_mainViewModel.CurrentViewModel.GetType()})");
                 default:
                     throw new NotImplementedException($"UpdateViewCommand.Execute: Unknown parameter ({parameter})");
             }
