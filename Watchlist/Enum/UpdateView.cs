@@ -7,6 +7,7 @@
         Edit_Ok,
         Edit_Cancel,
         Edit_Delete,
-        EntryList_NewEntry
+        EntryList_AddEntry,
+        EntryList_EditEntry
     }
 }

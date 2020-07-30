@@ -6,12 +6,12 @@ using Watchlist.Commands;
 
 namespace Watchlist.ViewModels
 {
-    public class EditFrameViewModel : BaseViewModel
+    public class EditEntryViewModel : BaseViewModel
     {
         public EntryViewModel CurrentContent { get; set; }
         public ICommand UpdateViewCommand { get; set; }
 
-        public EditFrameViewModel(EntryViewModel currentContent, UpdateViewCommand updateViewCommand)
+        public EditEntryViewModel(EntryViewModel currentContent, UpdateViewCommand updateViewCommand)
         {
             CurrentContent = currentContent;
             UpdateViewCommand = updateViewCommand;

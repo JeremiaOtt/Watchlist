@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Watchlist.Views
 {
     /// <summary>
-    /// Interaction logic for AddFrameUserControl.xaml
+    /// Interaction logic for ShowEntryListUserControl.xaml
     /// </summary>
-    public partial class AddFrameUserControl : UserControl
+    public partial class ShowEntryListUserControl : UserControl
     {
-        public AddFrameUserControl()
+        public ShowEntryListUserControl()
         {
             InitializeComponent();
         }

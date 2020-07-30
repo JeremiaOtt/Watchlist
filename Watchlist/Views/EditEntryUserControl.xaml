@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Watchlist.Views.AddFrameUserControl"
+﻿<UserControl x:Class="Watchlist.Views.EditEntryUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,11 +17,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <views:EntryUserControl DataContext="{Binding CurrentContent}"/>
 
-        <Button Content="Ok" Grid.Column="1" Grid.Row="0" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Add_Ok}"/>
-        <Button Content="Cancel" Grid.Column="1" Grid.Row="1" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Add_Cancel}"/>
+        <Button Content="Ok" Grid.Column="1" Grid.Row="0" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Edit_Ok}"/>
+        <Button Content="Cancel" Grid.Column="1" Grid.Row="1" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Edit_Cancel}"/>
+        <Button Content="Delete" Grid.Column="1" Grid.Row="2" Command="{Binding UpdateViewCommand}" CommandParameter="{x:Static enum:UpdateView.Edit_Delete}"/>
     </Grid>
 </UserControl>

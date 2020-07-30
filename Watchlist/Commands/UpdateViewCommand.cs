@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Watchlist.Enum;
@@ -42,35 +43,47 @@ namespace Watchlist.Commands
 
             switch ((UpdateView)parameter)
             {
-                case UpdateView.EntryList_NewEntry:
-                    var series = new Series(_counter, "Enter new name");
-                    _mainViewModel.CurrentViewModel = new AddFrameViewModel(new EntryViewModel(series), this);
-                    break;
                 case UpdateView.Add_Ok:
-                    if (_mainViewModel.CurrentViewModel is AddFrameViewModel currentViewModel)
+                    if (_mainViewModel.CurrentViewModel is AddEntryViewModel AddEntryViewModel)
                     {
                         var newCollection = _seriesCollection.ToOvservableCollection();
-                        newCollection.Add(currentViewModel.CurrentContent.SelectedSeries);
+                        newCollection.Add(AddEntryViewModel.CurrentContent.SelectedSeries);
                         _seriesCollection = newCollection;
                         _storageSerializer.Save(new Storage(_counter.GetIdWithOutIncrease(), newCollection));
-                        _mainViewModel.CurrentViewModel = new EntryListViewModel(newCollection, this);
+                        _mainViewModel.CurrentViewModel = new ShowEntryListViewModel(new EntryListViewModel(newCollection), this);
                         break;
                     }
                     throw new InvalidCastException($"UpdateViewCommand.Execute: Add_Ok ({_mainViewModel.CurrentViewModel.GetType()})");
                 case UpdateView.Add_Cancel:
-                    _mainViewModel.CurrentViewModel = new EntryListViewModel(_seriesCollection, this);
+                    _mainViewModel.CurrentViewModel = new ShowEntryListViewModel(new EntryListViewModel(_seriesCollection), this);
                     break;
-                //case UpdateView.Edit_Delete:
-                    //if (_mainViewModel.CurrentViewModel is EntryViewModel currentViewModel)
-                    //{
-                    //    var newCollection = _seriesCollection.ToOvservableCollection();
-                    //    newCollection.Delete(currentViewModel.SelectedSeries);
-                    //    _seriesCollection = newCollection;
-                    //    _storageSerializer.Save(new Storage(_counter.GetIdWithOutIncrease(), newCollection));
-                    //    _mainViewModel.CurrentViewModel = new EntryListViewModel(newCollection, this);
-                    //    break;
-                    //}
-                    //throw new InvalidCastException($"UpdateViewCommand.Execute: Edit_Delete ({_mainViewModel.CurrentViewModel.GetType()})");
+                case UpdateView.Edit_Ok:
+                    // This maybe works. If it does I have a problem. Because Edit_Cancel will not undo all changes.
+                    _storageSerializer.Save(new Storage(_counter.GetIdWithOutIncrease(), _seriesCollection));
+                    _mainViewModel.CurrentViewModel = new ShowEntryListViewModel(new EntryListViewModel(_seriesCollection), this);
+                    break;
+                case UpdateView.Edit_Cancel:
+                    _mainViewModel.CurrentViewModel = new ShowEntryListViewModel(new EntryListViewModel(_seriesCollection), this);
+                    break;
+                case UpdateView.Edit_Delete:
+                    if (_mainViewModel.CurrentViewModel is EditEntryViewModel EditEntryViewModel)
+                    {
+                        var newCollection = _seriesCollection.ToOvservableCollection();
+                        newCollection.Remove(EditEntryViewModel.CurrentContent.SelectedSeries);
+                        _seriesCollection = newCollection;
+                        _storageSerializer.Save(new Storage(_counter.GetIdWithOutIncrease(), newCollection));
+                        _mainViewModel.CurrentViewModel = new ShowEntryListViewModel(new EntryListViewModel(newCollection), this);
+                        break;
+                    }
+                    throw new InvalidCastException($"UpdateViewCommand.Execute: Edit_Delete ({_mainViewModel.CurrentViewModel.GetType()})");
+                case UpdateView.EntryList_AddEntry:
+                    var series = new Series(_counter, "Enter new name");
+                    _mainViewModel.CurrentViewModel = new AddEntryViewModel(new EntryViewModel(series), this);
+                    break;
+                case UpdateView.EntryList_EditEntry:
+                    var selectedIndex = ((EntryListViewModel)_mainViewModel.CurrentViewModel).SelectedIndex;
+                    _mainViewModel.CurrentViewModel = new EditEntryViewModel(new EntryViewModel(_seriesCollection.ElementAt(selectedIndex)), this);
+                    break;
                 default:
                     throw new NotImplementedException($"UpdateViewCommand.Execute: Unknown parameter ({parameter})");
             }

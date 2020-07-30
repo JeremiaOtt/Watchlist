@@ -11,13 +11,11 @@ namespace Watchlist.ViewModels
     public class EntryListViewModel : BaseViewModel
     {
         public ObservableCollection<Series> SeriesCollection { get; }
+        public int SelectedIndex { get; set; }
 
-        public ICommand UpdateViewCommand { get; set; }
-
-        public EntryListViewModel(IEnumerable<Series> seriesCollection, UpdateViewCommand updateViewCommand)
+        public EntryListViewModel(IEnumerable<Series> seriesCollection)
         {
             SeriesCollection = seriesCollection.ToOvservableCollection();
-            UpdateViewCommand = updateViewCommand;
         }
     }
 }
